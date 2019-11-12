@@ -1,0 +1,14 @@
+<form
+  class="mb-2"
+  [formGroup]="form"
+  (ngSubmit)="submit()">
+
+  <div class="form-row m-0">
+    <input type="text"
+         formControlName="titulo"
+         class="form-control col-8"
+         >
+
+    <button type="submit" class="offset-1 btn btn-outline-primary">Guardar</button>
+  </div>
+</form>
