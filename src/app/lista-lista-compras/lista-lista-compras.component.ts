@@ -1,35 +1,33 @@
-import {Component, OnInit} from '@angular/core';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../redux/app.reducer';
-import {Lista} from '../../models/lista.model';
-import {AgregarItemLista} from '../../redux/lista.actions';
-import {Item} from '../../models/item.model';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Lista } from '../../models/lista.model';
+import { ListaService } from '../services/lista-service.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-lista-lista-compras',
   templateUrl: './lista-lista-compras.component.html',
   styleUrls: ['./lista-lista-compras.component.css']
 })
-export class ListaListaComprasComponent implements OnInit {
+export class ListaListaComprasComponent implements OnInit, OnDestroy {
 
   lista: Lista[] = [];
 
+  listaSubscription: Subscription = new Subscription();
+
   constructor(
-    private store: Store<AppState>
+    private listaService: ListaService
   ) {
   }
 
   ngOnInit() {
-    this.store.select('lista').subscribe(lista => this.lista = lista);
+    this.listaSubscription = this.listaService.getListas().subscribe(
+      data => this.lista = data
+    );
   }
 
-  seleccionarLista(id) {
-    const item = new Item();
-    item.description = 'PAN';
-
-    const accion = new AgregarItemLista(id, item);
-
-    this.store.dispatch(accion);
+  ngOnDestroy(): void {
+    this.listaSubscription.unsubscribe();
   }
+
 
 }

@@ -4,8 +4,8 @@
     <div class="list-group" *ngFor="let li of lista">
       <button type="button"
               class="list-group-item list-group-item-action"
-              [routerLink]="['/lista', li.id]"
-              (click)="seleccionarLista(li.id)"> {{ li.titulo }}</button>
+              [routerLink]="['/lista', li.id]"> {{ li.titulo }}
+      </button>
     </div>
   </div>
 </div>

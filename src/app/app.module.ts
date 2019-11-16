@@ -11,13 +11,15 @@ import { FormListaComprasComponent } from './form-lista-compras/form-lista-compr
 import { ReactiveFormsModule} from '@angular/forms';
 import { ItemListaComprasComponent } from './item-lista-compras/item-lista-compras.component';
 import { AppRoutingModule } from './app-routing.module';
+import { FormItemComponent } from './item-lista-compras/form-item/form-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListaListaComprasComponent,
     FormListaComprasComponent,
-    ItemListaComprasComponent
+    ItemListaComprasComponent,
+    FormItemComponent
   ],
   imports: [
     StoreModule.forRoot(AppReducer),
